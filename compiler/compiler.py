@@ -60,3 +60,5 @@ class CharrCompiler:
     def parse(self, source: str) -> Module:
         self.parser.log.flush()
         return self.parser.parse(self.tokens(source))
+
+
