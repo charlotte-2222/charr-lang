@@ -7,8 +7,16 @@ from lexer import CharrLexer
 from models import Module
 from parser import CharrParser
 
+""" This is the main compiler class. 
+It is responsible for taking a Charr source file and compiling it to a binary file. 
+It is also responsible for taking a binary file and executing it. """
+
 
 class CompilerToken:
+    # This is the token type for the compiler.
+    # It is used to determine what type of token is being used.
+    # i.e. if the token is a keyword, a number, a string, etc.
+    # This is used to determine what type of action to take when parsing the token.
     def __init__(self,
                  original_token: sly.lex.Token,
                  source: str) -> None:
@@ -41,6 +49,11 @@ class CompilerToken:
 
 
 class CharrCompiler:
+    """compiler.py:"""
+    # This is the main function for the compiler.
+    # It takes a Charr source file and compiles it to a binary file.
+    # It is also responsible for taking a binary file and executing it.
+
     def __init__(self):
         self.lexer = CharrLexer()
         self.parser = CharrParser()
@@ -60,5 +73,3 @@ class CharrCompiler:
     def parse(self, source: str) -> Module:
         self.parser.log.flush()
         return self.parser.parse(self.tokens(source))
-
-
