@@ -1,3 +1,3 @@
 @echo off
-python -m charr %1
+python -m execute calc_pi.charr %1
 pause

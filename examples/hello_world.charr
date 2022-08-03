@@ -1,1 +1,1 @@
-out("Hello, world!")
+out "Hello, world!"

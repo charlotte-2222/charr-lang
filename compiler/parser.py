@@ -1,11 +1,10 @@
 from sly import Parser
-
 from compiler.lexer import CharrLexer
 
 
 class CharrParser(Parser):
     tokens = CharrLexer.tokens
-    # debugfile = "log.out"
+
     precedence = (
         ('right', COLON),
         ('left', OR, AND),
@@ -21,6 +20,7 @@ class CharrParser(Parser):
     )
 
     def __init__(self):
+        self.env = {}
         self.names = {}
         self.prompt = True
 
