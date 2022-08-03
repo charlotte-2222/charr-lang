@@ -1,6 +1,8 @@
 
 from .lexer import CharrLexer
 from .parser import CharrParser
+import colorama as c
+from colorama import init, Fore, Back, Style
 
 VERSION = "0.0.1"
 
@@ -206,10 +208,11 @@ def execute(text):
 def shell():
     lexer = CharrLexer()
     parser = CharrParser()
-    print(f"Charr Lang {VERSION}")
+    print(c.Fore.MAGENTA+"------------------------------------------------------\n"
+          f"Charr Lang {VERSION} Shell\n")
     while True:
         try:
-            text = input('charr ->: ')
+            text = input(c.Fore.LIGHTBLUE_EX+'->: ')
         except EOFError:
             break
         tree = parser.parse(lexer.tokenize(text))
