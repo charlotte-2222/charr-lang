@@ -1,26 +1,41 @@
 import argparse
-
-
+from sys import argv
 from compiler.parser import CharrParser
 from compiler.lexer import CharrLexer
+from compiler.execute import execute, shell
+
+
+def main():
+    if len(argv) <= 1:
+        shell()
+    else:
+        fp = argv[1]
+        execute(fp)
 
 
 if __name__ == '__main__':
-    argparse=argparse.ArgumentParser(description='A simple language for programming in Charr Lang')
-    argparse.add_argument('filename', metavar='filename', type=str, help='runn a Charr file')
-    args=argparse.parse_args()
+    main()
 
-    f=open(args.filename, 'r')
-    code=f.read()
-    f.close()
-    if not code:
-        print('No code to run')
-        exit(1)
-    lexer=CharrLexer()
-    parser=CharrParser()
-    tokens=lexer.tokenize(code)
-    program=parser.parse(tokens)
-    if not program:
-        exit(1)
-    scope=parser.names
-    program.exec(scope)
+
+#-----------------
+
+
+    # file_open = input("Enter the CharrLang file to run: ")
+    # f = open(file_open, 'r')
+    # lexer = CharrLexer()
+    # parser = CharrParser()
+    # file_data = f.read()
+    #
+    # code = parser.parse(lexer.tokenize(file_data))
+    #
+    # create_sln = open("create_sln.charr", "w")
+    # create_sln.write("Solution: \n".join(str(code) for code in code))
+    # create_sln.close()
+    # open(file_open, 'r')
+    # data = f.readlines()
+    # for line in data:
+    #     lexer = CharrLexer()
+    #     parser = CharrParser()
+    #     result = parser.parse(lexer.tokenize(line))
+
+

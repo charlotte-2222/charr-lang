@@ -198,7 +198,10 @@ class Break:
     pass
 
 
-def execute(text):
+def execute(fp):
+    with open(fp, "r") as f:
+        text = f.read()
+
     lexer = CharrLexer()
     parser = CharrParser()
     tree = parser.parse(lexer.tokenize(text))
