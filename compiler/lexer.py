@@ -1,92 +1,72 @@
-import logging
-import sly
-from colorama import init, Fore, Back, Style
+from sly import Lexer
 
 
-class CharrLexer(sly.Lexer):
-    log = logging.getLogger(__name__)
-    literals = {"(", ")", "{", "}", "[", "]", ".", ","}
+class CharrLexer(Lexer):
+    tokens = {NAME, NUMBER, PLUS, TIMES, MINUS, DIVIDE, MOD, POW, ARROW, LPAREN, RPAREN,
+              IF, ELIF, ELSE, WHILE, DO, BREAK, STRING, PRINT, INPUT, INC, DEC, EQ, GT, GTE, LT, LTE, NE, PASS,
+              LBRAC, RBRAC, OR, AND, COMMA}
 
-    tokens = {
-        MINUS, PLUS, TIMES, DIVIDE,
-        POWER, MOD, OR, AND,
-        NOT, DEFINE, NULL, WHILE,
-        FOR, IN, RETURN, GE,
-        LE, LT, GT, EQ,
-        NE, COLON, INT, FLOAT,
-        DOUBLE, STRING, CHAR, EQUALS,
-        BOOL, IF, ELIF, ELSE, TYPE,
-        NAMESPACE, BINOR, BINAND,
-        BINXOR, BINNOT, ARROW, PASS,
-        NEWLINE,
-    }
+    # Ignored patterns
+    ignore_newline = r'\n+'
+    ignore_comment = r'//.*\n*'
+    ignore = ' \t'
 
-    ARROW = r'->'
+    # Tokens
+    NAME = r'[a-zA-Z_][a-zA-Z0-9_]*'
 
-    GE = r">="
-    LE = r"<="
-    EQ = r"=="
-    NE = r"!="
-    LT = r"<"
-    GT = r">"
+    NUMBER = r'\d+\.{0,1}\d*'
 
-    BINOR = r"\|\|"
-    BINAND = r"&&"
-    BINXOR = r"\^"
-    BINNOT = r"!|~"
+    NAME['if'] = IF
+    NAME['elif'] = ELIF
+    NAME['else'] = ELSE
+    NAME['while'] = WHILE
+    NAME['do'] = DO
+    NAME['break'] = BREAK
+    NAME['out'] = PRINT
+    NAME['in'] = INPUT
+    NAME['inc'] = INC
+    NAME['dec'] = DEC
+    NAME['nothing'] = PASS
+    NAME['and'] = AND
+    NAME['or'] = OR
 
-    BOOL = r"(True)|(False)"
+    literals = {'[', ']', '(', ')', ':'}
 
-    FLOAT = r"0\.\d+"
-    DOUBLE = r"\d+\.\d+"
-    INT = r"\d+"
+    # Operators
+    PLUS = r'\+'
+    MINUS = r'-'
+    TIMES = r'\*'
+    DIVIDE = r'/'
+    LPAREN = r'\('
+    RPAREN = r'\)'
+    LBRAC = r'\{'
+    RBRAC = r'\}'
+    MOD = r'%'
+    POW = r'\^'
+    EQ = r'=='
+    GT = r'>'
+    GTE = r'>='
+    LT = r'<'
+    LTE = r'<='
+    NE = r'!='
+    ARROW = r'='
+    COMMA = r','
 
-    STRING = r"\"()\"|\"([^\\\n]*?)([\\][\\])*\"|\"(.*?[^\\\n])\""
-    CHAR = r"'(\\?).'"
+    # String
+    @_(r'''("[^"\\]*(\\.[^"\\]*)*"|'[^'\\]*(\\.[^'\\]*)*')''')
+    def STRING(self, t):
+        t.value = self.remove_quotes(t.value)
+        return t
 
-    TYPE = ":[a-zA-Z_][a-zA-Z0-9_]*"  # Needs to go before COLON because its longer.
+    def remove_quotes(self, text: str):
+        if text.startswith('\"') or text.startswith('\''):
+            return text[1:-1]
+        return text
 
-    MINUS = r"-"
-    PLUS = r"\+"
-    DIVIDE = r"/"
-    POWER = r"\*\*"
-    TIMES = r"\*"
-    MOD = r"%"
+    # Extra action for newlines
+    def ignore_newline(self, t):
+        self.lineno += t.value.count('\n')
 
-    COLON = r":"
-    EQUALS = r"="
-
-    reserved_tokens = {
-        "def": "DEFINE",
-        "return": "RETURN",
-        "null": "NULL",
-        "or": "OR",
-        "and": "AND",
-        "xor": "XOR",
-        "not": "NOT",
-        "for": "FOR",
-        "in": "IN",
-        "while": "WHILE",
-        "if": "IF",
-        "elif": "ELIF",
-        "else": "ELSE",
-        "pass": "PASS",
-    }
-
-    @_(r"\w+")
-    def NAMESPACE(self, token):
-        token.type = self.reserved_tokens.get(token.value, "NAMESPACE")
-        return token
-
-    @_(r"(;|\n)+")
-    def NEWLINE(self, token: sly.lex.Token) -> sly.lex.Token:
-        self.lineno += len(token.value)
-        return token
-
-    ignore = " \t"
-
-    ignore_COMMENT = r"//.*"
-
-    def error(self, t: sly.lex.Token) -> None:
-        logging.warning("Illegal character %s" % t)
-        self.index += len(t.value)
+    def error(self, t):
+        print("Illegal character '%s'" % t.value[0])
+        self.index += 1
