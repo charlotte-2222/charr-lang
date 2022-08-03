@@ -2,7 +2,9 @@ from sys import argv
 from setuptools import setup, find_packages
 
 if argv[1] in ('install', 'build', 'sdist', 'bdist_wheel'):
-    setup(
+    pass
+
+setup(
         name='charr-lang',
         version='0.0.1',
         description='A simple language for programming',
