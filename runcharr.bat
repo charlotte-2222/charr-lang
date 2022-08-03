@@ -1,3 +1,3 @@
 @echo off
-python -m charr helloWorld.charr %1
+python -m charr %1
 pause
