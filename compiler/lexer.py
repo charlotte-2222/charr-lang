@@ -2,9 +2,15 @@ from sly import Lexer
 
 
 class CharrLexer(Lexer):
-    tokens = {NAME, NUMBER, PLUS, TIMES, MINUS, DIVIDE, MOD, POW, ARROW, LPAREN, RPAREN,
-              IF, ELIF, ELSE, WHILE, DO, BREAK, STRING, PRINT, INPUT, INC, DEC, EQ, GT, GTE, LT, LTE, NE, PASS,
-              LBRAC, RBRAC, OR, AND, COMMA}
+    tokens = {NAME, NUMBER, PLUS, TIMES,
+              MINUS, DIVIDE, MOD, POW,
+              ARROW, LPAREN, RPAREN,
+              IF, ELIF, ELSE, WHILE,
+              DO, BREAK, STRING, PRINT,
+              INPUT, INC, DEC, EQ,
+              GT, GTE, LT, LTE,
+              NE, PASS, LBRAC, RBRAC,
+              OR, AND, COMMA}
 
     # Ignored patterns
     ignore_newline = r'\n+'

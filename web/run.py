@@ -17,7 +17,7 @@ class handler(BaseHTTPRequestHandler):
             )
         code = code_params[0]
 
-        tmpfile = "/tmp/" + str(uuid.uuid1())[:12] + ".charr"
+        tmpfile = "/CharrFiles/" + str(uuid.uuid1())[:12] + ".charr"
         with open(tmpfile, "w") as f:
             f.write(code)
 

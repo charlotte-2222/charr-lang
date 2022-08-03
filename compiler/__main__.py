@@ -1,5 +1,6 @@
 import click
 
+import compiler
 from compiler.execute import execute, shell
 
 
@@ -21,8 +22,6 @@ def main(src, code):
 
     execute(code)
 
-
-"""Charr Lang Compiler"""
 
 if __name__ == '__main__':
     main()
