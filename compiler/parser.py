@@ -38,9 +38,9 @@ class CharrParser(Parser):
     def statements(self, p):
         return ('statements', p.statements[1] + [p.statement])
 
-    ############################################################
-    # STATEMENTS
-    ############################################################
+
+
+#statements -> statement statements | empty
 
     @_('PRINT statement')
     def statement(self, p):
@@ -74,9 +74,10 @@ class CharrParser(Parser):
     def statement(self, p):
         return ('break',)
 
-    ############################################################
-    # Expressions
-    ############################################################
+
+
+#expressions -> expr expressions | empty
+
 
     @_(' "[" params "]"')
     def expr(self, p):

@@ -117,7 +117,7 @@ def evaluate(tree):
         try:
             oldval = names[tree[1]]
         except KeyError:
-            return print(undefined.format(varname))
+            return print(undefined.format(name))
 
         newval = oldval - 1
 
@@ -188,7 +188,7 @@ def evaluate(tree):
             if any([isinstance(res, Break) for res in results]):
                 break
     else:
-        # print(rule, tree)
+        print(rule, tree)
         pass
 
 

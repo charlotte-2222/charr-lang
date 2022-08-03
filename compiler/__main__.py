@@ -1,6 +1,5 @@
 import click
 
-import compiler
 from compiler.execute import execute, shell
 
 
