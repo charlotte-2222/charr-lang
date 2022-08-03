@@ -1,7 +1,6 @@
 from sly import Parser
 
-
-from lexer import CharrLexer
+from compiler.lexer import CharrLexer
 
 
 class CharrParser(Parser):
@@ -25,7 +24,6 @@ class CharrParser(Parser):
         self.names = {}
         self.prompt = True
 
-
     @_('statements')
     def main(self, p):
         return ('main', p.statements)
@@ -38,9 +36,7 @@ class CharrParser(Parser):
     def statements(self, p):
         return ('statements', p.statements[1] + [p.statement])
 
-
-
-#statements -> statement statements | empty
+    # statements -> statement statements | empty
 
     @_('PRINT statement')
     def statement(self, p):
@@ -74,10 +70,7 @@ class CharrParser(Parser):
     def statement(self, p):
         return ('break',)
 
-
-
-#expressions -> expr expressions | empty
-
+    # expressions -> expr expressions | empty
 
     @_(' "[" params "]"')
     def expr(self, p):
