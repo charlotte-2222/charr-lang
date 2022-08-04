@@ -1,29 +1,39 @@
-import argparse
-import sys
-from sys import argv
+from compiler.shell import *
 from compiler.parser import CharrParser
 from compiler.lexer import CharrLexer
 from compiler.execute import CharrExecute
 
+import os
 
-# def main():
-#     if len(argv) <= 1:
-#         shell()
-#     else:
-#         fp = argv[1]
-#         execute(fp)
 
 def main():
     lexer = CharrLexer()
     parser = CharrParser()
     env = {}
-    with open('example.charr file', 'r') as f:
-        for line in f:
-            print("\n")
-            code = parser.parse(lexer.tokenize(line))
-            print('code:', code)
-            CharrExecute(code, env)
-            print("\n")
+
+    print("Welcome to the Charr Language Compiler\n"
+          "Option | Description | Command \n"
+          "-------|-------------|------- \n"
+          "Shell | Run the Charr Shell | Enter 'shell'\n"
+          "Compile | Compile a Charr File (.charr), default option. | Enter absolute file pathing to a .charr file\n"
+          "Exit | Exit the compiler | Enter 'exit' \n"
+          "------------------------------------------------------\n")
+
+    while True:
+        file = input("-> ")
+        if file == "shell":
+            while True:
+                shell()
+        elif file == "exit":
+            exit(1)
+        else:
+            with open(file, 'r') as f:
+                for line in f:
+                    print("\n")
+                    code = parser.parse(lexer.tokenize(line))
+                    print('code:', code)
+                    CharrExecute(code, env)
+                    print("\n")
 
 
 if __name__ == '__main__':

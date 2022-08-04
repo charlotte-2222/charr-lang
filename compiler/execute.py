@@ -102,15 +102,15 @@ class CharrExecute:
             return (self.walkTree(node[1]), self.walkTree(node[2]))
 
 
-# def shell():
-#     lexer = CharrLexer()
-#     parser = CharrParser()
-#     print(c.Fore.MAGENTA + "------------------------------------------------------\n"
-#                            f"Charr Lang {VERSION} Shell\n")
-#     while True:
-#         try:
-#             text = input(c.Fore.LIGHTBLUE_EX + '->: ')
-#         except EOFError:
-#             break
-#         tree = parser.parse(lexer.tokenize(text))
-#         walkTree(tree, env)
+def shell():
+    lexer = CharrLexer()
+    parser = CharrParser()
+    print(c.Fore.MAGENTA + "------------------------------------------------------\n"
+                           f"Charr Lang {VERSION} Shell\n")
+    while True:
+        try:
+            text = input(c.Fore.LIGHTBLUE_EX + '->: ')
+        except EOFError:
+            break
+        tree = parser.parse(lexer.tokenize(text))
+        walkTree(tree, env)

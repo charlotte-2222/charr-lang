@@ -1,5 +1,5 @@
 # Charr Lang
-version: 0.0.1
+version: 0.0.2
 
 (Early development)
 
@@ -12,6 +12,15 @@ https://replit.com/@charlotte-2222/charr-lang?v=1
 
 If you wish to run the language on your own machine, you are welcome to clone/or fork the repository.
 At the moment Charr is not ready for extended use, but it is capable of running .charr files to some extent.
+
+
+## Updates:
+The current version of CharrLang now supports compilation of .charr files, as well as running syntax in the shell.
+On a previous version, I broke the shell; and that version remained stable on replit. 
+
+I wouldn't say I'm quite done yet, I'd like to keep working on both the shell, compiler, and further development of the language.
+
+Eventually I'll upload to pypi.
 
 
 # General Syntax:
@@ -143,5 +152,19 @@ output pi
 # That's all for the time being.
 
 
-Author: Charlotte Childers
-Date: 2022-08-03
+Author: Charlotte Childers<br>
+Date of documentation: August 3rd, 2022
+
+[![forthebadge](https://forthebadge.com/images/badges/made-with-crayons.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)](https://forthebadge.com)<br>
+
+## Contacts:
+
+* <a href="https://charlotte-2222.github.io/links/">Website Links</a>
+* <a href="https://charlotte-2222.github.io/">Github</a>
+* <a href="https://twitter.com/charlotte_cjc">Twitter</a>
+* <a href="https://www.linkedin.com/in/charlotte-childers/">LinkedIn</a>
+* <a href="mailto:ayy.charlotte@gmail.com">Email</a>
+
+Feel free to contact me regarding this language or any other questions, comments, or concerns.
+Email would be the best way to get a response.

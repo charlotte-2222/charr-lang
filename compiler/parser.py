@@ -16,7 +16,7 @@ class CharrParser(Parser):
         ('right', UMINUS),
         ('left', WHILE, DO),
         ('left', IF, ELIF, ELSE),
-        ('left', PRINT, INPUT)
+        ('left', PRINT, INPUT),
     )
 
     def __init__(self):
