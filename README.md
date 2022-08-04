@@ -161,7 +161,7 @@ Date of documentation: August 3rd, 2022
 ## Contacts:
 
 * <a href="https://charlotte-2222.github.io/links/">Website Links</a>
-* <a href="https://charlotte-2222.github.io/">Github</a>
+* <a href="https://github.com/charlotte-2222/">Github</a>
 * <a href="https://twitter.com/charlotte_cjc">Twitter</a>
 * <a href="https://www.linkedin.com/in/charlotte-childers/">LinkedIn</a>
 * <a href="mailto:ayy.charlotte@gmail.com">Email</a>
